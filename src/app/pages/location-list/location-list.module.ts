@@ -1,25 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { LocationListPageRoutingModule } from './location-list-routing.module';
-
-// Pages
+import { SharedModule } from 'src/app/shared.module';
 import { LocationListPage } from './location-list.page';
-import { PagesButtonsComponent } from 'src/app/components/pages-buttons/pages-buttons.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationListPageRoutingModule
+    LocationListPageRoutingModule,
+    SharedModule
   ],
   declarations: [
-    LocationListPage,
-    PagesButtonsComponent
+    LocationListPage
   ]
 })
 export class LocationListPageModule {}

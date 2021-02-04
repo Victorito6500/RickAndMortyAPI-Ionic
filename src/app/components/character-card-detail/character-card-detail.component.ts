@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
 
 // Models
 import { Character } from 'src/app/models/characters';
@@ -8,7 +6,6 @@ import { Episode } from 'src/app/models/episodes';
 import { Location } from 'src/app/models/locations';
 
 // Services
-import { CharacterService } from 'src/app/services/character/character.service';
 import { EpisodeService } from 'src/app/services/episode/episode.service';
 import { LocationService } from 'src/app/services/location/location.service';
 
@@ -25,11 +22,8 @@ export class CharacterCardDetailComponent implements OnInit {
   origin:Location;
   lastKnownLocation:Location;
 
-  constructor( private route:ActivatedRoute,
-               private _characterService:CharacterService,
-               private _episodeService:EpisodeService,
-               private _locationService:LocationService,
-               private navCtrl:NavController) { }
+  constructor( private _episodeService:EpisodeService,
+               private _locationService:LocationService) { }
 
   ngOnInit() {
 

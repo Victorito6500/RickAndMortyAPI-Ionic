@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 // Models
-import { Character } from 'src/app/models/characters';
 import { Location } from 'src/app/models/locations';
 
 // Services
@@ -25,9 +24,7 @@ export class LocationDetailsPage implements OnInit {
   location$:Observable<Location>;
 
   constructor( private route:ActivatedRoute,
-               private _characterService:CharacterService,
                private _locationService:LocationService,
-               private router:Router,
                private navCtrl:NavController ) { }
 
   ngOnInit() {
