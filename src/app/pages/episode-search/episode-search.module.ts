@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { EpisodeSearchPageRoutingModule } from './episode-search-routing.module';
 
+// Pages
 import { EpisodeSearchPage } from './episode-search.page';
 
 @NgModule({

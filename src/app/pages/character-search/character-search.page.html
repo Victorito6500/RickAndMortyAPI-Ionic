@@ -13,26 +13,11 @@
   <ion-row *ngIf="charactersFiltered" class="fondo">
     <ion-col *ngFor="let character of charactersFiltered" size="6"
               class="animate__animated animate__pulse">
-      <ion-card (click)="characterDetails(character.id)">
-        <ion-img [src]="character.image"></ion-img>
 
-        <ion-card-content>
-          <ion-card-title>
-            {{ character.name }}
-          </ion-card-title>
-
-          <ion-card-subtitle class="mt-2">
-            <ion-icon name="ellipse"
-            [ngClass]="{
-              'alive': character.status === 'Alive',
-              'dead': character.status === 'Dead',
-              'unknown': character.status === 'unknown'
-            }"></ion-icon>
-            {{ character.status }} - {{ character.species }}
-          </ion-card-subtitle>
-        </ion-card-content>
-        
-      </ion-card>
+      <app-character-card-list
+        [character]="character">
+      </app-character-card-list>
+      
     </ion-col>
   </ion-row>
 

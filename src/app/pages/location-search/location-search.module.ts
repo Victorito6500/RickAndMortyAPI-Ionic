@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LocationSearchPageRoutingModule } from './location-search-routing.module';
 
+// Pages
 import { LocationSearchPage } from './location-search.page';
 
 @NgModule({

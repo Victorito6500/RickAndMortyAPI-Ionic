@@ -18,30 +18,37 @@ export class CharacterListPage implements OnInit {
   // Properties
   characterResults:CharacterResults;
   characterList:Character[];
+  page:number = 1;
 
   constructor( private _characterService:CharacterService,
-               private router:Router ) {
+               private router:Router ) { }
 
-    this._characterService.getCharacters()
+  ngOnInit() {
+
+    this.getCharacterResults(this.page);
+
+  }
+
+  // Methods
+  // Search characters containing the string
+  searchCharacter(texto:string){
+    if(texto.length > 0){
+      this.router.navigate(['/character-search', texto]);
+    }
+  }
+
+  // Get the characters of the next or prev page
+  pageMove(page:number){
+    this.getCharacterResults(page);
+  }
+
+  // Suscribe to the observable and get de character results
+  private getCharacterResults(page:number){
+    this._characterService.getCharacters(page)
       .subscribe( (result:CharacterResults) => {
         this.characterResults = result;
         this.characterList = this.characterResults.results;  
     });
-
-  }
-
-  ngOnInit() {
-  }
-
-  // Methods
-  // Navigates to the details of the episode selected
-  characterDetails(id:number){
-    this.router.navigate(['/character-details', id]);
-  }
-
-  // Search characters containing the string
-  searchCharacter(texto:string){
-    this.router.navigate(['/character-search', texto]);
   }
 
 }

@@ -6,7 +6,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { LocationListPageRoutingModule } from './location-list-routing.module';
 
+// Pages
 import { LocationListPage } from './location-list.page';
+import { PagesButtonsComponent } from 'src/app/components/pages-buttons/pages-buttons.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,9 @@ import { LocationListPage } from './location-list.page';
     IonicModule,
     LocationListPageRoutingModule
   ],
-  declarations: [LocationListPage]
+  declarations: [
+    LocationListPage,
+    PagesButtonsComponent
+  ]
 })
 export class LocationListPageModule {}

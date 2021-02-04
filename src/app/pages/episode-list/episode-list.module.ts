@@ -6,7 +6,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { EpisodeListPageRoutingModule } from './episode-list-routing.module';
 
+// Pages
 import { EpisodeListPage } from './episode-list.page';
+import { PagesButtonsComponent } from 'src/app/components/pages-buttons/pages-buttons.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,9 @@ import { EpisodeListPage } from './episode-list.page';
     IonicModule,
     EpisodeListPageRoutingModule
   ],
-  declarations: [EpisodeListPage]
+  declarations: [
+    EpisodeListPage,
+    PagesButtonsComponent
+  ]
 })
 export class EpisodeListPageModule {}

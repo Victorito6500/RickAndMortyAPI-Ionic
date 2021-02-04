@@ -7,6 +7,13 @@
 </ion-header>
 
 <ion-content *ngIf="locationResults" class="animate__animated animate__fadeIn">
+  <app-pages-buttons
+    [currPage]="page"
+    [next]="locationResults.info.next"
+    [prev]="locationResults.info.prev"
+    (pageMove)="pageMove($event)">
+  </app-pages-buttons>
+
   <ion-list class="animate__animated animate__backInUp">
     <ion-item *ngFor="let location of locationList" (click)="locationDetails(location.id)">
       <ion-label>
@@ -14,4 +21,11 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <app-pages-buttons
+    [currPage]="page"
+    [next]="locationResults.info.next"
+    [prev]="locationResults.info.prev"
+    (pageMove)="pageMove($event)">
+  </app-pages-buttons>
 </ion-content>

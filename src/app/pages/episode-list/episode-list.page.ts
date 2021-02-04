@@ -6,7 +6,6 @@ import { EpisodeResults } from 'src/app/models/episode-results';
 import { Episode } from 'src/app/models/episodes';
 
 // Services
-import { CharacterService } from 'src/app/services/character/character.service';
 import { EpisodeService } from 'src/app/services/episode/episode.service';
 
 @Component({
@@ -19,19 +18,15 @@ export class EpisodeListPage implements OnInit {
   // Properties
   episodeResults:EpisodeResults;
   episodeList:Episode[];
+  page:number = 1;
 
-  constructor( private _characterService:CharacterService,
-               private _episodeService:EpisodeService,
-               private router:Router ) { 
-
-    this._episodeService.getEpisodes()
-      .subscribe( (result:EpisodeResults) =>{
-        this.episodeResults = result;
-        this.episodeList = this.episodeResults.results;
-      });
-  }
+  constructor( private _episodeService:EpisodeService,
+               private router:Router ) { }
 
   ngOnInit() {
+
+    this.getEpisodeResults(this.page);
+
   }
 
   // Methods
@@ -42,6 +37,22 @@ export class EpisodeListPage implements OnInit {
 
   // Search episodes containing the string
   searchEpisode(texto:string){
-    this.router.navigate(['/episode-search', texto]);
+    if(texto.length > 0){
+      this.router.navigate(['/episode-search', texto]);
+    }
+  }
+
+  // Get the characters of the next or prev page
+  pageMove(page:number){
+    this.getEpisodeResults(page);
+  }
+
+  // Suscribe to the observable and get de episode results
+  private getEpisodeResults(page:number){
+    this._episodeService.getEpisodes(page)
+      .subscribe( (result:EpisodeResults) =>{
+        this.episodeResults = result;
+        this.episodeList = this.episodeResults.results;
+      });
   }
 }

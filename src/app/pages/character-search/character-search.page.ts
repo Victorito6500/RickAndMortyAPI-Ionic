@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 // Models
-import { CharacterResults } from 'src/app/models/character-results';
 import { Character } from 'src/app/models/characters';
 
 // Services
@@ -17,54 +16,34 @@ import { CharacterService } from 'src/app/services/character/character.service';
 export class CharacterSearchPage implements OnInit {
 
   // Properties
-  charactersFiltered:Character[];
+  charactersFiltered:Character[] = [];
   textoBuscado:string;
 
   constructor( private route:ActivatedRoute,
                private _characterService:CharacterService,
-               private navCtrl:NavController,
-               private router:Router ) { }
+               private navCtrl:NavController ) { }
 
   ngOnInit() {
-
+    
     this.route.params.subscribe( (params) => {
       this.textoBuscado = params['texto'];
-      let allCharacters:Character[];
 
-      this._characterService.getCharacters().subscribe( (characterResult:CharacterResults) => {
-        allCharacters = characterResult.results;
+      this._characterService.searchCharacters(this.textoBuscado);
 
-        this.charactersFiltered = this.getCharacterFiltered(params['texto'], allCharacters);
-      });
+      this.charactersFiltered = this._characterService.allCharactersFiltered;
+      
+      if(this.charactersFiltered.length == 0){
+        this.navCtrl.back();
+      }
       
     })
+    
   }
 
   // Methods
-  // Navigates to the character details page
-  characterDetails(id:number){
-    this.router.navigate(['/character-details', id]);
-  }
-
   // Return back to the last page
   volver(){
     this.navCtrl.back();
-  }
-
-  // Find the characters containing the string 
-  private getCharacterFiltered(texto:string, characters:Character[]):Character[]{
-    texto = texto.toLowerCase();
-    let arrTmp:Character[] = [];
-
-    characters.forEach( (character) => {
-      let nameLower = character.name.toLowerCase();
-      let specie = character.species.toLowerCase();
-      if(nameLower.indexOf(texto) >= 0 || specie.indexOf(texto) >= 0){
-        arrTmp.push(character);
-      }
-    });
-
-    return arrTmp;
   }
 
 }

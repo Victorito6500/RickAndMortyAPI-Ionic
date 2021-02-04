@@ -6,7 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { CharacterListPageRoutingModule } from './character-list-routing.module';
 
+// Pages
 import { CharacterListPage } from './character-list.page';
+
+// Components
+import { CharacterCardListComponent } from 'src/app/components/character-card-list/character-card-list.component';
+import { PagesButtonsComponent } from 'src/app/components/pages-buttons/pages-buttons.component';
 
 @NgModule({
   imports: [
@@ -15,6 +20,10 @@ import { CharacterListPage } from './character-list.page';
     IonicModule,
     CharacterListPageRoutingModule
   ],
-  declarations: [CharacterListPage]
+  declarations: [
+    CharacterListPage,
+    CharacterCardListComponent,
+    PagesButtonsComponent
+  ]
 })
 export class CharacterListPageModule {}

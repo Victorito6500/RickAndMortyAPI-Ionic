@@ -5,15 +5,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-// Componets
+// Components
 import { AppComponent } from './app.component';
-
+import { TabButtonsComponent } from './components/tab-buttons/tab-buttons.component';
 
 // Services
 import { CharacterService } from './services/character/character.service';
 import { EpisodeService } from './services/episode/episode.service';
 import { LocationService } from './services/location/location.service';
-import { TabButtonsComponent } from './components/tab-buttons/tab-buttons.component';
 
 @NgModule({
   declarations: [

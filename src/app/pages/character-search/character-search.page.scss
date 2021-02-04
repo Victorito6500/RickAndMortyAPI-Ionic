@@ -3,23 +3,8 @@
     font-size: 35px;
 }
 
-.alive{
-    color: green;
-}
-
-.dead{
-    color: red;
-}
-
-.unknown{
-    color: grey;
-}
-
-.fondo{
-    background-image: url('../../../assets/img/bg.jpg');
-    background-size: cover;
-    background-repeat: repeat;
-    height: 100vh;
+ion-content{
+    --background: url('../../../assets/img/bg.jpg') no-repeat center center / cover;
 }
 
 ion-col{

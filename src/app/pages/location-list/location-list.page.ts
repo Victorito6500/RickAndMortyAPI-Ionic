@@ -18,18 +18,15 @@ export class LocationListPage implements OnInit {
   // Properties
   locationResults:LocationResults;
   locationList:Location[];
+  page:number = 1;
 
   constructor( private _locationService:LocationService,
-               private router:Router ) { 
-
-    this._locationService.getLocations()
-      .subscribe( (result:LocationResults) =>{
-        this.locationResults = result;
-        this.locationList = this.locationResults.results;
-      });
-  }
+               private router:Router ) { }
 
   ngOnInit() {
+
+    this.getEpisodeResults(this.page);
+
   }
 
   // Methods
@@ -41,5 +38,19 @@ export class LocationListPage implements OnInit {
   // Search locations containing the string
   searchLocation(texto:string){
     this.router.navigate(['/location-search', texto]);
+  }
+
+  // Get the characters of the next or prev page
+   pageMove(page:number){
+    this.getEpisodeResults(page);
+  }
+
+  // Suscribe to the observable and get de episode results
+  private getEpisodeResults(page:number){
+    this._locationService.getLocations(page)
+      .subscribe( (result:LocationResults) =>{
+        this.locationResults = result;
+        this.locationList = this.locationResults.results;
+      });
   }
 }

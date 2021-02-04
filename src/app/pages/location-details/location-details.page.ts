@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 // Models
 import { Character } from 'src/app/models/characters';
@@ -19,31 +20,22 @@ export class LocationDetailsPage implements OnInit {
 
   // Properties
   location:Location;
-  residents:Character[];
+
+  // Observables
+  location$:Observable<Location>;
 
   constructor( private route:ActivatedRoute,
                private _characterService:CharacterService,
                private _locationService:LocationService,
                private router:Router,
-               private navCtrl:NavController ) { 
-    
-  }
+               private navCtrl:NavController ) { }
 
   ngOnInit() {
+
     this.route.params.subscribe( (params) => {
-
-      this._locationService.getLocation(params['id'])
-        .subscribe( (location:Location) =>{
-          this.location = location;
-
-          this.residents = [];
-
-          this.location.residents.forEach( (residentURL) => {
-            this.getResident(residentURL);
-          });
-        });
-
+      this.location$ = this._locationService.getLocation(params['id']);
     });
+
   }
 
   // Methods
@@ -52,16 +44,4 @@ export class LocationDetailsPage implements OnInit {
     this.navCtrl.back();
   }
 
-  // Navigates to the character details page
-  residentDetails(id:number){
-    this.router.navigate(['character-details', id]);
-  }
-
-  // Add a character to resident list
-  private getResident(url:string){
-    this._characterService.getCharacterByURL(url)
-      .subscribe( (character:Character) => {
-        this.residents.push(character);
-      });
-  }
 }

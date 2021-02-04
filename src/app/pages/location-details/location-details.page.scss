@@ -3,17 +3,8 @@
     font-size: 35px;
 }
 
-.titulo{
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 1rem;
-}
-
-.fondo{
-    background-image: url('../../../assets/img/bg.jpg');
-    background-size: cover;
-    background-repeat: repeat;
-    height: 100vh;
+ion-content{
+    --background: url('../../../assets/img/bg.jpg') no-repeat center center / cover;
 }
 
 ion-card{

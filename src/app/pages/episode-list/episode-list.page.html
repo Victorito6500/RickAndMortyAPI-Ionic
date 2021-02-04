@@ -7,6 +7,13 @@
 </ion-header>
 
 <ion-content *ngIf="episodeResults" class="animate__animated animate__fadeIn">
+  <app-pages-buttons
+    [currPage]="page"
+    [next]="episodeResults.info.next"
+    [prev]="episodeResults.info.prev"
+    (pageMove)="pageMove($event)">
+  </app-pages-buttons>
+
   <ion-list class="animate__animated animate__backInUp">
     <ion-item *ngFor="let episode of episodeList" (click)="episodeDetails(episode.id)">
       <ion-label>
@@ -14,4 +21,11 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <app-pages-buttons
+    [currPage]="page"
+    [next]="episodeResults.info.next"
+    [prev]="episodeResults.info.prev"
+    (pageMove)="pageMove($event)">
+  </app-pages-buttons>
 </ion-content>

@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 // Models
-import { EpisodeResults } from 'src/app/models/episode-results';
 import { Episode } from 'src/app/models/episodes';
 
 // Services
@@ -17,7 +16,7 @@ import { EpisodeService } from 'src/app/services/episode/episode.service';
 export class EpisodeSearchPage implements OnInit {
 
   // Properties
-  episodesFiltered:Episode[];
+  episodesFiltered:Episode[] = [];
   textoBuscado:string;
 
   constructor( private route:ActivatedRoute,
@@ -26,16 +25,17 @@ export class EpisodeSearchPage implements OnInit {
                private router:Router ) { }
 
   ngOnInit() {
+    
     this.route.params.subscribe( (params) => {
       this.textoBuscado = params['texto'];
-      let allEpisodes:Episode[];
 
-      this._episodeService.getEpisodes().subscribe( (episodeResults:EpisodeResults) => {
-        allEpisodes = episodeResults.results;
+      this._episodeService.searchLocations(this.textoBuscado);
 
-        this.episodesFiltered = this.getEpisodesFiltered(params['texto'], allEpisodes);
-      });
+      this.episodesFiltered = this._episodeService.allEpisodesFiltered;
       
+      if(this.episodesFiltered.length == 0){
+        this.navCtrl.back();
+      }
     })
   }
 
@@ -48,25 +48,6 @@ export class EpisodeSearchPage implements OnInit {
   // Return back to the last page
   volver(){
     this.navCtrl.back();
-  }
-
-  // Find the episodes containing the string 
-  private getEpisodesFiltered(texto:string, episodes:Episode[]):Episode[]{
-    texto = texto.toLowerCase();
-
-    let arrTmp:Episode[] = [];
-
-
-    episodes.forEach( (episode) => {
-      let nameLower = episode.name.toLowerCase();
-
-      let numEp = episode.episode.toLowerCase();
-      if(nameLower.indexOf(texto) >= 0 || numEp.indexOf(texto) >= 0){
-        arrTmp.push(episode);
-      }
-    });
-
-    return arrTmp;
   }
 
 }
