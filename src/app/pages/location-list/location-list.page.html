@@ -1,0 +1,17 @@
+<ion-header class="animate__animated animate__fadeIn">
+  <ion-toolbar>
+    <ion-title class="titulo">Rick & Morty Locations</ion-title>
+
+    <ion-searchbar class="buscador" (keyup.enter)="searchLocation(texto.value)" #texto></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="locationResults" class="animate__animated animate__fadeIn">
+  <ion-list class="animate__animated animate__backInUp">
+    <ion-item *ngFor="let location of locationList" (click)="locationDetails(location.id)">
+      <ion-label>
+        {{ location.name }} - {{ location.type }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,17 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
+// Componets
+import { AppComponent } from './app.component';
+
+
+// Services
+import { CharacterService } from './services/character/character.service';
+import { EpisodeService } from './services/episode/episode.service';
+import { LocationService } from './services/location/location.service';
+import { TabButtonsComponent } from './components/tab-buttons/tab-buttons.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    TabButtonsComponent
+  ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    CharacterService,
+    EpisodeService,
+    LocationService,
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

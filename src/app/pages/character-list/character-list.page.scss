@@ -1,0 +1,41 @@
+.titulo{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    text-align: start;
+
+    color: greenyellow;
+
+    text-shadow:
+   -3px -3px 0 #000,
+    3px -3px 0 #000,
+   -3px 3px 0 #000,
+    3px 3px 0 rgb(0, 0, 0);
+
+    padding-top: 15px;
+}
+
+.buscador{
+    padding: 10px 20px 15px 20px;
+}
+
+.alive{
+    color: green;
+}
+
+.dead{
+    color: red;
+}
+
+.unknown{
+    color: grey;
+}
+
+.fondo{
+    background-image: url('../../../assets/img/bg.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+ion-col{
+    animation-duration: 0.5s;
+}

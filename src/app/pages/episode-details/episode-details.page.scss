@@ -1,0 +1,21 @@
+.back{
+    color: greenyellow;
+    font-size: 35px;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 1rem;
+}
+
+.fondo{
+    background-image: url('../../../assets/img/bg.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    height: 100vh;
+}
+
+ion-card{
+    animation-duration: 0.7s;
+}
